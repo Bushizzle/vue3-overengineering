@@ -1,0 +1,15 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.currencySelector {
+	flex-basis: 40%;
+}
+
+.amountInput {
+	flex-basis: 50%;
+}

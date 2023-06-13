@@ -12,18 +12,21 @@ export const useExchangeStore = defineStore('exchange', {
 	}),
 	actions: {
 		changeFrom(value: string) {
-			console.log(value);
 			this.from = value;
 		},
 		changeTo(value: string) {
-			this.from = value;
+			this.to = value;
 		},
 		changeAmount(value: number) {
 			this.amount = value;
 		},
 		changeRate(value: number) {
 			this.rate = value;
-			console.log(value, value === this.rate);
 		},
 	},
+	getters: {
+		convertedAmount(): number {
+			return +(this.amount * this.rate).toFixed(2);
+		}
+	}
 })

@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+}
+
+.checkboxContainer {
+	display: flex;
+	align-items: center;
+
+	input {
+		margin-right: 10px;
+	}
+}

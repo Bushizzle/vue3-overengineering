@@ -4,10 +4,10 @@ import type { UserSettings } from './types';
 export const useUserStore = defineStore('user', {
 	state: () => ({
 		settings: {
-			graph_visible: true,
+			chart_visible: true,
 			list_visible: true,
 		},
-		graph_visible: true,
+		chart_visible: true,
 		list_visible: true,
 	}),
 	actions: {

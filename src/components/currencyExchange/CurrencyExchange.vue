@@ -12,6 +12,7 @@ const store = props.exchangeService.useStore();
 const changeAmount = props.exchangeService.changeAmount;
 const changeFrom = props.exchangeService.changeFrom;
 const changeTo = props.exchangeService.changeTo;
+const swapCurrencies = props.exchangeService.swapCurrencies;
 
 </script>
 
@@ -29,9 +30,10 @@ const changeTo = props.exchangeService.changeTo;
         :class="[styles.currencyPair]"
         :currencies="store.currencies"
         :currency.sync="store.to"
-        :amount="store.amount * store.rate"
+        :amount="store.convertedAmount"
         @update:currency="changeTo"
         :disabled="true"
     />
+    <button @click="swapCurrencies">swap</button>
   </div>
 </template>

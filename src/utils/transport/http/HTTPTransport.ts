@@ -1,5 +1,6 @@
-import { DEFAULT_CACHE_TTL } from './constants';
 import type { IHTTPTransport, RequestOptions } from './types';
+import { DEFAULT_CACHE_TTL } from './constants';
+import { Logger } from '../../logger';
 
 // Transport layer is responsible for: storing endpoint and params, caching, and providing methods for different requests (get, post, put, delete, etc.).
 export class HTTPTransport<T> implements IHTTPTransport<T> {
@@ -8,6 +9,23 @@ export class HTTPTransport<T> implements IHTTPTransport<T> {
 		this.params = params;
 		this.url = `${this.endpoint}?${new URLSearchParams(this.params).toString()}`;
 		this.ttl = ttl;
+		this.loadCache();
+	}
+	loadCache = () => {
+		const data = localStorage.getItem(this.url);
+		if (data) {
+			try {
+				const cache = JSON.parse(data);
+				Object.keys(cache).forEach(key => {
+					const { ttl } = cache[key];
+					if (Date.now() - ttl < this.ttl) {
+						this.cache.set(key, cache[key]);
+					}
+				});
+			} catch (error) {
+				Logger.error('HTTPTransport: loadCache: data is not valid', data);
+			}
+		}
 	}
 	request = (query: string, options: RequestOptions): Promise<T> => {
 		return new Promise((resolve, reject) => {
@@ -50,6 +68,7 @@ export class HTTPTransport<T> implements IHTTPTransport<T> {
 			data,
 			ttl: Date.now() + this.ttl,
 		});
+		localStorage.setItem(this.url, JSON.stringify(Object.fromEntries(this.cache)));
 	}
 	url;
 	cache = new Map();

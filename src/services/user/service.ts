@@ -29,6 +29,10 @@ export class UserService implements IUserService {
 		}
 		this.saveSettings();
 	}
+	public toggleVisibility(key: keyof UserSettings) {
+		this.store.change(key, !this.store.settings[key]);
+		this.saveSettings();
+	}
 
 	public saveSettings() {
 		console.log(this.store.settings);

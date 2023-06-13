@@ -1,7 +1,7 @@
 import { Store } from 'pinia';
 
 export type UserSettings = {
-	graph_visible: boolean;
+	chart_visible: boolean;
 	list_visible: boolean;
 }
 export interface IUserService {

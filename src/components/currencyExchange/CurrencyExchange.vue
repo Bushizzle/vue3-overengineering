@@ -4,10 +4,14 @@ import CurrencyPair from '../UI/currencyPair/CurrencyPair.vue';
 import styles from './CurrencyExchange.module.scss';
 
 const props = defineProps({
-  service: { type: ExchangeService, required: true },
+  exchangeService: { type: ExchangeService, required: true },
 });
 
-const store = props.service.useStore();
+const store = props.exchangeService.useStore();
+
+const changeAmount = props.exchangeService.changeAmount;
+const changeFrom = props.exchangeService.changeFrom;
+const changeTo = props.exchangeService.changeTo;
 
 </script>
 
@@ -18,15 +22,16 @@ const store = props.service.useStore();
         :currencies="store.currencies"
         :currency.sync="store.from"
         :amount.sync="store.amount"
-        @update:currency="store.changeFrom"
-        @update:amount="store.changeAmount"
+        @update:currency="changeFrom"
+        @update:amount="changeAmount"
     />
     <CurrencyPair
         :class="[styles.currencyPair]"
         :currencies="store.currencies"
         :currency.sync="store.to"
-        :amount.sync="store.amount * store.rate"
-        @update:currency="store.changeTo"
+        :amount="store.amount * store.rate"
+        @update:currency="changeTo"
+        :disabled="true"
     />
   </div>
 </template>

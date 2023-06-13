@@ -3,6 +3,7 @@ import type { IUserService, UserSettings } from './types';
 import { USER_SETTINGS_KEY } from './constants';
 import { useUserStore } from './store';
 
+// Maybe this service should be a singleton, encapsulated in _instance parameter
 export class UserService implements IUserService {
 	store = useUserStore();
 	constructor() {

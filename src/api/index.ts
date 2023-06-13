@@ -1,2 +1,2 @@
 export { Api } from './Api';
-export type { IApi, RequestProps } from './types';
+export type { IApi, RequestParams } from './types';

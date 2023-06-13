@@ -18,8 +18,6 @@ const props = defineProps({
   },
 });
 
-console.log(props.options);
-
 const emit = defineEmits(['update:modelValue']);
 
 function updateValue(event: Event) {

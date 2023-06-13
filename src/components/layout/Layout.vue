@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import CurrencyExchange from '../currencyExchange/CurrencyExchange.vue';
 import ConversionList from '../conversionList/ConversionList.vue';
-import { ExchangeService } from '../../services';
+import { ExchangeService, UserService} from '../../services';
+import { FCS, FCSResponse } from '../../settings'
+// import style from "./Layout.module.scss";
 
-import style from "./Layout.module.scss";
 
-const fcaExchangeService = new ExchangeService<{
-  "data": { [code: string]: number }
-}>('https://api.exchangeratesapi.io/latest', { apikey: 'PvhDF691O8HtDbfsvuaqujnAwbVZJsqX' });
-
-// const userService = new UserService();
-// const { settings: { list_visible } } = userService.useStore();
+// services initialization
+// in the future some framework may be responsible for services initialization and their dependency graphs
+const fcaExchangeService = new ExchangeService<FCSResponse>(FCS.endpoint, { apikey: FCS.apikey });
+const userService = new UserService();
+const userStore = userService.useStore();
 
 </script>
 
 <template>
-  <CurrencyExchange :service="fcaExchangeService" />
-  <ConversionList :service="fcaExchangeService" :isVisible="true" />
+  <CurrencyExchange :exchangeService="fcaExchangeService" :userService="userService"/>
+  <ConversionList :exchangeService="fcaExchangeService" v-show="userStore.list_visible"  />
 </template>

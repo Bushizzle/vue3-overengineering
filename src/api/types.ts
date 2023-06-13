@@ -1,8 +1,10 @@
 import type { IHTTPTransport } from '../utils/transport';
-export type RequestProps = Record<string, string>;
+export type RequestParams = Record<string, string>;
+export type EndpointTypes = {
+	HTTP: string;
+	WS?: string;
+}
 export interface IApi<T>  {
-	params: RequestProps;
-	endpoint: string;
-	transport: IHTTPTransport<T>; // or IWSTransport<T> in the future;
-	request: (params: RequestProps) => Promise<T>;
+	HTTPTransport: IHTTPTransport<T>; // or IWSTransport<T> in the future;
+	get: (params: RequestParams) => Promise<T>;
 }

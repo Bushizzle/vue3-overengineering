@@ -7,6 +7,8 @@ export const useUserStore = defineStore('user', {
 			graph_visible: true,
 			list_visible: true,
 		},
+		graph_visible: true,
+		list_visible: true,
 	}),
 	actions: {
 		change(key: keyof UserSettings, value: boolean) {

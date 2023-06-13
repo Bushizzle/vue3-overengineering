@@ -15,6 +15,10 @@ const props = defineProps({
     type: String as PropType<string>,
     default: 'text',
   },
+  disabled: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -30,6 +34,7 @@ function updateValue(event: Event) {
         :type="type"
         :class="[styles.input]"
         :value="modelValue"
+        :disabled="disabled"
         @input="updateValue"
     />
   </div>

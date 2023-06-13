@@ -5,15 +5,16 @@ import DropdownComponent from '../dropdown/Dropdown.vue';
 import InputComponent from '../input/Input.vue';
 
 const props = defineProps({
-  // role: { type: String, required: true },
   currencies: { type: Array as PropType<{ label: string; value: string }[]>, required: true },
   currency: { type: String as PropType<string>, required: true },
   amount: { type: Number as PropType<number>, required: true },
+  disabled: { type: Boolean as PropType<boolean>, default: false },
 });
 
 const emit = defineEmits(['update:currency', 'update:amount']);
 
 function updateCurrency(newCurrency: string) {
+  console.log(newCurrency);
   emit('update:currency', newCurrency);
 }
 function updateAmount(newAmount: string) {
@@ -33,6 +34,7 @@ function updateAmount(newAmount: string) {
         :type="'number'"
         :class="[styles.amountInput]"
         :modelValue="amount"
+        :disabled="disabled"
         @update:modelValue="updateAmount"
     />
   </div>

@@ -33,6 +33,7 @@ export class ExchangeService<T extends { data: { [key: string]: number } }> impl
 		console.log(value);
 		void this.getRate(value, this.store.to).then(({ data }) => {
 			if (data.hasOwnProperty(this.store.to)) {
+				this.store.changeFrom(value);
 				this.store.changeRate(data[this.store.to]);
 			} else {
 				Logger.error('ExchangeService: getRate: data is not valid', data);
@@ -41,8 +42,9 @@ export class ExchangeService<T extends { data: { [key: string]: number } }> impl
 	};
 	public changeTo = (value: string) =>  {
 		void this.getRate(this.store.from, value).then(({ data }) => {
-			if (data.hasOwnProperty(this.store.to)) {
-				this.store.changeRate(data[this.store.to]);
+			if (data.hasOwnProperty(value)) {
+				this.store.changeTo(value);
+				this.store.changeRate(data[value]);
 			} else {
 				Logger.error('ExchangeService: getRate: data is not valid', data);
 			}

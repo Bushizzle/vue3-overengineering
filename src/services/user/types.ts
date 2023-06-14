@@ -1,11 +1,11 @@
-import { Store } from 'pinia';
+import { type Store } from 'pinia';
 
-export type UserSettings = {
-	chart_visible: boolean;
-	list_visible: boolean;
+export interface UserSettings {
+  chart_visible: boolean;
+  list_visible: boolean;
 }
 export interface IUserService {
-	loadSettings() : void;
-	changeSettings(settings: Partial<UserSettings>) : void;
-	useStore() : Store;
+  loadSettings: () => void;
+  changeSettings: (settings: Partial<UserSettings>) => void;
+  useStore: () => Store;
 }

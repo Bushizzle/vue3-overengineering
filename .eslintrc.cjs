@@ -5,7 +5,7 @@ module.exports = {
         browser: true,
         es2021: true,
     },
-    parser: '@typescript-eslint/parser',
+    parser: 'vue-eslint-parser',
     parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
@@ -17,6 +17,8 @@ module.exports = {
         'eslint:recommended',
         'prettier',
         'plugin:vue/vue3-essential',
+        'plugin:vue/base',
+        '@vue/eslint-config-typescript',
     ],
     rules: {
         '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
@@ -46,10 +48,11 @@ module.exports = {
             },
         ],
         eqeqeq: 'error',
+
     },
     overrides: [
         {
-            files: ['*.ts, *.vue'],
+            files: ['*.ts', '*.vue'],
             plugins: ['@typescript-eslint'],
             parser: '@typescript-eslint/parser',
             parserOptions: {

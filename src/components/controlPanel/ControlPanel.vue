@@ -8,11 +8,11 @@ const props = defineProps({
 
 const store = props.userService.useStore();
 
-const toggleConversionListVisibility = () => {
+const toggleConversionListVisibility = (): void => {
   props.userService.toggleVisibility('list_visible');
 };
 
-const toggleChartVisibility = () => {
+const toggleChartVisibility = (): void => {
   props.userService.toggleVisibility('chart_visible');
 };
 </script>

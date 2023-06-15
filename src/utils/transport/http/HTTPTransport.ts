@@ -12,12 +12,12 @@ export class HTTPTransport<T> implements IHTTPTransport<T> {
     this.loadCache();
   }
 
-  loadCache = () => {
+  loadCache = (): void => {
     const data = localStorage.getItem(this.url);
     if (data) {
       try {
         const cache = JSON.parse(data);
-        Object.keys(cache).forEach(key => {
+        Object.keys(cache as { [query: string]: T }).forEach(key => {
           const { ttl } = cache[key];
           if (Date.now() - ttl < this.ttl) {
             this.cache.set(key, cache[key]);
@@ -36,8 +36,8 @@ export class HTTPTransport<T> implements IHTTPTransport<T> {
           if (response.status !== 200) {
             reject(response.statusText);
           }
-          response.json().then(data => {
-            resolve(data);
+          void response.json().then(data => {
+            resolve(data as T);
           });
         })
         .catch(error => {
@@ -48,8 +48,8 @@ export class HTTPTransport<T> implements IHTTPTransport<T> {
 
   async get(query: string, invalidateCache = false): Promise<T> {
     const cached = this.checkCache(query);
-    if (cached && !invalidateCache) {
-      return await Promise.resolve(cached);
+    if (typeof cached !== 'undefined' && !invalidateCache) {
+      return Promise.resolve(cached);
     }
     return await this.request(query, { method: 'GET' }).then(data => {
       this.setCache(query, data);
@@ -57,7 +57,7 @@ export class HTTPTransport<T> implements IHTTPTransport<T> {
     });
   }
 
-  checkCache(query: string) {
+  checkCache(query: string): T | undefined {
     if (this.cache.has(query)) {
       const cached = this.cache.get(query);
       if (cached.ttl > Date.now()) {
@@ -68,7 +68,7 @@ export class HTTPTransport<T> implements IHTTPTransport<T> {
     }
   }
 
-  setCache(query: string, data: unknown) {
+  setCache(query: string, data: unknown): void {
     this.cache.set(query, {
       data,
       ttl: Date.now() + this.ttl,

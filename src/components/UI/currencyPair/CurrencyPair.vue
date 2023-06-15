@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import styles from './CurrencyPair.module.scss';
 import DropdownComponent from '../dropdown/Dropdown.vue';
 import InputComponent from '../input/Input.vue';
+import styles from './CurrencyPair.module.scss';
 
 const props = defineProps({
   currencies: { type: Array as PropType<{ label: string; value: string }[]>, required: true },
@@ -13,11 +13,10 @@ const props = defineProps({
 
 const emit = defineEmits(['update:currency', 'update:amount']);
 
-function updateCurrency(newCurrency: string) {
-  console.log(newCurrency);
+function updateCurrency(newCurrency: string): void {
   emit('update:currency', newCurrency);
 }
-function updateAmount(newAmount: string) {
+function updateAmount(newAmount: string): void {
   emit('update:amount', newAmount);
 }
 </script>

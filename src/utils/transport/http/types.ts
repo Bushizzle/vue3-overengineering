@@ -11,9 +11,9 @@ export interface RequestOptions {
 }
 
 export interface IHTTPTransport<T> {
-  get: (query: string, f: boolean) => Promise<T>;
-  checkCache: (query: string) => HTTPTransportCacheRecord<T> | undefined;
-  setCache: (query: string, data: any, ttl: number) => void;
+  get: (query: string, f: boolean) => Promise<T> | HTTPTransportCacheRecord<T>;
+  checkCache: (query: string) => T | undefined;
+  setCache: (query: string, data: unknown, ttl: number) => void;
   loadCache: () => void;
   endpoint: string;
   url: string;

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import styles from './ConversionList.module.scss';
 import { ExchangeService } from '../../services';
+import styles from './ConversionList.module.scss';
 
 const props = defineProps({
   exchangeService: { type: ExchangeService, required: true },

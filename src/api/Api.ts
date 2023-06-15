@@ -8,7 +8,7 @@ export class Api<T> implements IApi<T> {
   }
 
   HTTPTransport;
-  async get(params: RequestParams) {
+  async get(params: RequestParams): Promise<T> {
     return await this.HTTPTransport.get(new URLSearchParams(params).toString());
   }
 }

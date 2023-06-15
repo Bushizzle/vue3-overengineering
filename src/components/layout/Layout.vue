@@ -3,7 +3,7 @@ import CurrencyExchange from '../currencyExchange/CurrencyExchange.vue';
 import ConversionList from '../conversionList/ConversionList.vue';
 import ControlPanel from '../controlPanel/ControlPanel.vue';
 import { ExchangeService, UserService} from '../../services';
-import { FCS, FCSResponse } from '../../dataProviders'
+import { FCS, FCSResponse } from '../../dataProviders';
 // import style from "./Layout.module.scss";
 
 
@@ -12,7 +12,6 @@ import { FCS, FCSResponse } from '../../dataProviders'
 const fcaExchangeService = new ExchangeService<FCSResponse>(FCS.endpoint, { apikey: FCS.apikey });
 const userService = new UserService();
 const userStore = userService.useStore();
-
 </script>
 
 <template>

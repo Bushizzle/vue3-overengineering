@@ -1,3 +1,4 @@
+import type { Store } from 'pinia';
 import { Api, type IApi, type RequestParams } from '../../api';
 import { Logger } from '../../utils/logger';
 import { useExchangeStore } from './store';
@@ -6,7 +7,7 @@ import type { IExchangeService } from './types';
 export class ExchangeService<T extends { data: Record<string, number> }> implements IExchangeService<T> {
   constructor(endpoint: string, params: RequestParams) {
     this.api = new Api<T>({ HTTP: endpoint }, params, 60000);
-    this.getRate(this.store.from, this.store.to).then(({ data }) => {
+    void this.getRate(this.store.from, this.store.to).then(({ data }) => {
       if (this.store.to in data) {
         this.store.changeRate(data[this.store.to]);
       } else {
@@ -18,7 +19,7 @@ export class ExchangeService<T extends { data: Record<string, number> }> impleme
   store = useExchangeStore();
   api: IApi<T>;
 
-  public useStore = () => this.store;
+  public useStore = (): Store => this.store;
   public async getRate(from: string, to: string): Promise<T> {
     return await this.api.get({
       base_currency: from,
@@ -26,9 +27,9 @@ export class ExchangeService<T extends { data: Record<string, number> }> impleme
     });
   }
 
-  public changeFrom = (value: string) => {
+  public changeFrom = (value: string): void => {
     void this.getRate(value, this.store.to).then(({ data }) => {
-      if (data.hasOwnProperty(this.store.to)) {
+      if (data && Object.hasOwn(data, this.store.to)) {
         this.store.changeFrom(value);
         this.store.changeRate(data[this.store.to]);
       } else {
@@ -37,9 +38,9 @@ export class ExchangeService<T extends { data: Record<string, number> }> impleme
     });
   };
 
-  public changeTo = (value: string) => {
+  public changeTo = (value: string): void => {
     void this.getRate(this.store.from, value).then(({ data }) => {
-      if (data.hasOwnProperty(value)) {
+      if (Object.hasOwn(data, value)) {
         this.store.changeTo(value);
         this.store.changeRate(data[value]);
       } else {
@@ -48,10 +49,10 @@ export class ExchangeService<T extends { data: Record<string, number> }> impleme
     });
   };
 
-  public swapCurrencies = () => {
+  public swapCurrencies = (): void => {
     const from = this.store.to;
     const to = this.store.from;
-    this.getRate(to, from).then(({ data }) => {
+    void this.getRate(to, from).then(({ data }) => {
       if (from in data) {
         this.store.changeRate(data[this.store.to]);
         this.store.changeTo(to);
@@ -62,7 +63,7 @@ export class ExchangeService<T extends { data: Record<string, number> }> impleme
     });
   };
 
-  public changeAmount = (value: string) => {
+  public changeAmount = (value: string): void => {
     this.store.changeAmount(+value);
   };
 }

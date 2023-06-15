@@ -1,6 +1,8 @@
-import { createApp } from 'vue';
+import { createApp, type VueElement } from 'vue';
 import { createPinia } from 'pinia';
 import './styles/style.css';
 import App from './App.vue';
 
-createApp(App).use(createPinia()).mount('#app');
+createApp(App as VueElement)
+  .use(createPinia())
+  .mount('#app');

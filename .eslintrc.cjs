@@ -6,12 +6,13 @@ module.exports = {
   },
   parser: "vue-eslint-parser",
   parserOptions: {
+    parser:  '@typescript-eslint/parser',
     ecmaVersion: 2022,
     sourceType: "module",
     project: ["./tsconfig.json"],
     extraFileExtensions: [".vue"]
   },
-  plugins: ["@typescript-eslint", "eslint-plugin-prettier", "import", "vue"],
+  plugins: ["eslint-plugin-prettier", "import", "vue"],
   extends: [
     "eslint:recommended",
     "prettier",
@@ -46,93 +47,8 @@ module.exports = {
         "newlines-between": "ignore"
       }
     ],
+    "vue/multi-word-component-names": "warn",
     eqeqeq: "error"
 
-  },
-  overrides: [
-    {
-      files: ["*.ts", "*.vue"],
-      plugins: ["@typescript-eslint"],
-      parser: "@typescript-eslint/parser",
-      parserOptions: {
-        tsconfigRootDir: process.cwd(),
-        project: "./tsconfig.json"
-      },
-      extends: [
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
-      ],
-      rules: {
-        "@typescript-eslint/no-undef": "off",
-        "@typescript-eslint/no-unsafe-member-access": "off",
-        "@typescript-eslint/camelcase": "off",
-        "@typescript-eslint/no-inferrable-types": "off",
-        "@typescript-eslint/prefer-namespace-keyword": "off",
-        "@typescript-eslint/unbound-method": "off",
-        "@typescript-eslint/no-unsafe-return": "off",
-        "@typescript-eslint/no-unsafe-assignment": "off",
-        "@typescript-eslint/no-unsafe-call": "off",
-        "@typescript-eslint/restrict-template-expressions": "warn",
-        "@typescript-eslint/array-type": [
-          "warn",
-          {
-            default: "array"
-          }
-        ],
-        "@typescript-eslint/explicit-module-boundary-types": "error",
-        "@typescript-eslint/switch-exhaustiveness-check": "warn",
-        "@typescript-eslint/restrict-plus-operands": "warn",
-        "@typescript-eslint/no-duplicate-imports": "warn",
-        "@typescript-eslint/no-explicit-any": "warn",
-        "@typescript-eslint/prefer-ts-expect-error": "error",
-        "@typescript-eslint/adjacent-overload-signatures": "error",
-        "@typescript-eslint/ban-ts-comment": [
-          "error",
-          {
-            "ts-expect-error": false,
-            "ts-nocheck": "allow-with-description"
-          }
-        ],
-        // By default, these are banned: String, Boolean, Number, Object, Symbol
-        "@typescript-eslint/ban-types": [
-          "error",
-          {
-            types: {
-              object: false,
-              "{}": false
-            }
-          }
-        ],
-        "@typescript-eslint/consistent-type-assertions": "error",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/consistent-type-imports": [
-          "error",
-          {
-            prefer: "type-imports"
-          }
-        ],
-        "@typescript-eslint/no-empty-function": "error",
-        "@typescript-eslint/no-floating-promises": "error",
-        "@typescript-eslint/no-for-in-array": "error",
-
-        "@typescript-eslint/no-misused-new": "error",
-        "@typescript-eslint/no-use-before-define": "error",
-        "semi": "off",
-        "@typescript-eslint/semi": ["error"]
-      }
-    }
-  ]
+  }
 };
-
-// module.exports = {
-//     extends: [
-//         // add more generic rulesets here, such as:
-//         // 'eslint:recommended',
-//         'plugin:vue/vue3-recommended',
-//         // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
-//     ],
-//     rules: {
-//         // override/add rules settings here, such as:
-//         // 'vue/no-unused-vars': 'error'
-//     }
-// }

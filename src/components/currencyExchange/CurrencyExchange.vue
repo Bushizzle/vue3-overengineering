@@ -8,11 +8,6 @@ const props = defineProps({
 });
 
 const store = props.exchangeService.useStore();
-
-const changeAmount = props.exchangeService.changeAmount;
-const changeFrom = props.exchangeService.changeFrom;
-const changeTo = props.exchangeService.changeTo;
-const swapCurrencies = props.exchangeService.swapCurrencies;
 </script>
 
 <template>
@@ -20,19 +15,19 @@ const swapCurrencies = props.exchangeService.swapCurrencies;
     <CurrencyPair
       :class="[styles.currencyPair]"
       :currencies="store.currencies"
-      :currency.sync="store.from"
-      :amount.sync="store.amount"
-      @update:currency="changeFrom"
-      @update:amount="changeAmount"
+      :currency="store.from"
+      :amount="store.amount"
+      @update:currency="props.exchangeService.changeFrom"
+      @update:amount="props.exchangeService.changeAmount"
     />
     <CurrencyPair
       :class="[styles.currencyPair]"
       :currencies="store.currencies"
-      :currency.sync="store.to"
+      :currency="store.to"
       :amount="store.convertedAmount"
-      @update:currency="changeTo"
+      @update:currency="props.exchangeService.changeTo"
       :disabled="true"
     />
-    <button @click="swapCurrencies">swap</button>
+    <button @click="props.exchangeService.swapCurrencies">swap</button>
   </div>
 </template>

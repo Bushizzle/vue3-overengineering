@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import styles from './ControlPanel.module.scss';
 import { UserService } from '../../services';
+import styles from './ControlPanel.module.scss';
 
 const props = defineProps({
   userService: { type: UserService, required: true },

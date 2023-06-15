@@ -6,7 +6,7 @@ interface Option {
   label: string;
   value: string;
 }
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   modelValue: {
     type: String as PropType<string>,

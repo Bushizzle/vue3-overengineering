@@ -21,12 +21,12 @@ const store = props.exchangeService.useStore();
       @update:amount="props.exchangeService.changeAmount"
     />
     <CurrencyPair
+      :disabled="true"
       :class="[styles.currencyPair]"
       :currencies="store.currencies"
       :currency="store.to"
       :amount="store.convertedAmount"
       @update:currency="props.exchangeService.changeTo"
-      :disabled="true"
     />
     <button @click="props.exchangeService.swapCurrencies">swap</button>
   </div>

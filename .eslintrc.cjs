@@ -14,11 +14,11 @@ module.exports = {
   },
   plugins: ["eslint-plugin-prettier", "import", "vue"],
   extends: [
-    "eslint:recommended",
-    "prettier",
+    "@vue/eslint-config-typescript",
+    "plugin:vue/vue3-recommended",
+    "@vue/typescript/recommended",
     "plugin:vue/vue3-essential",
-    "plugin:vue/base",
-    "@vue/eslint-config-typescript"
+    "prettier",
   ],
   rules: {
     "@typescript-eslint/no-unused-vars": ["warn", { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }],
@@ -47,7 +47,7 @@ module.exports = {
         "newlines-between": "ignore"
       }
     ],
-    "vue/multi-word-component-names": "warn",
+    "vue/multi-word-component-names": "off",
     eqeqeq: "error"
 
   }

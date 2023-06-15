@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { PropType, defineProps } from 'vue';
 import styles from './Input.module.scss';
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   modelValue: {
     type: Number as PropType<number>,

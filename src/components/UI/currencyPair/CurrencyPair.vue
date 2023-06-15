@@ -3,7 +3,7 @@ import { PropType } from 'vue';
 import DropdownComponent from '../dropdown/Dropdown.vue';
 import InputComponent from '../input/Input.vue';
 import styles from './CurrencyPair.module.scss';
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   currencies: { type: Array as PropType<{ label: string; value: string }[]>, required: true },
   currency: { type: String as PropType<string>, required: true },
@@ -26,16 +26,16 @@ function updateAmount(newAmount: string): void {
   <div :class="[styles.container]">
     <DropdownComponent
       :class="[styles.currencySelector]"
-      :modelValue="currency"
+      :model-value="currency"
       :options="currencies"
-      @update:modelValue="updateCurrency"
+      @update:model-value="updateCurrency"
     />
     <InputComponent
       :type="'number'"
       :class="[styles.amountInput]"
-      :modelValue="amount"
+      :model-value="amount"
       :disabled="disabled"
-      @update:modelValue="updateAmount"
+      @update:model-value="updateAmount"
     />
   </div>
 </template>

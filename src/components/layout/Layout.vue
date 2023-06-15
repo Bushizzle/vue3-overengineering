@@ -14,7 +14,7 @@ const userStore = userService.useStore();
 </script>
 
 <template>
-  <ControlPanel :userService="userService" />
-  <CurrencyExchange :exchangeService="fcaExchangeService" :userService="userService" />
-  <ConversionList :exchangeService="fcaExchangeService" v-show="userStore.list_visible" />
+  <ControlPanel :user-service="userService" />
+  <CurrencyExchange :exchange-service="fcaExchangeService" :user-service="userService" />
+  <ConversionList v-show="userStore.list_visible" :exchange-service="fcaExchangeService" />
 </template>

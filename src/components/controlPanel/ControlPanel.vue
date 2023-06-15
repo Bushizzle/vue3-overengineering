@@ -20,20 +20,12 @@ const toggleChartVisibility = (): void => {
 <template>
   <div :class="[styles.container]">
     <label :class="[styles.checkboxContainer]">
-      <input
-          type="checkbox"
-          v-model="store.list_visible"
-          @change="toggleConversionListVisibility"
-      >
+      <input type="checkbox" v-model="store.list_visible" @change="toggleConversionListVisibility" />
       Show Conversion List
     </label>
 
     <label :class="[styles.checkboxContainer]">
-      <input
-          type="checkbox"
-          v-model="store.chart_visible"
-          @change="toggleChartVisibility"
-      >
+      <input type="checkbox" v-model="store.chart_visible" @change="toggleChartVisibility" />
       Show Chart
     </label>
   </div>

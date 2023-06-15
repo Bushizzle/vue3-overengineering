@@ -1,9 +1,12 @@
 type HTTPTransportCache<T> = Map<string, HTTPTransportCacheRecord<T>>;
+
 interface HTTPTransportCacheRecord<T> {
   ttl: number;
   data: T;
 }
+
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS';
+
 export interface RequestOptions {
   method: RequestMethod;
   body?: string;

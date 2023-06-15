@@ -3,10 +3,13 @@
     "target": "ES2022",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["esnext", "dom", "DOM.Iterable"],
+    "lib": [
+      "esnext",
+      "dom",
+      "DOM.Iterable"
+    ],
     "skipLibCheck": true,
     "baseUrl": "./",
-
     /* Bundler mode */
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
@@ -14,14 +17,27 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "typing/env.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "files": ["typing/vue.d.ts", "typing/scss.d.ts", "typing/global.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "typing/env.d.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "files": [
+    "typing/vue.d.ts",
+    "typing/scss.d.ts",
+    "typing/global.d.ts"
+  ]
 }

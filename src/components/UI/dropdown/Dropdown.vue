@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType, defineProps} from 'vue';
+import { PropType, defineProps } from 'vue';
 import styles from './Dropdown.module.scss';
 
 interface Option {
@@ -27,16 +27,8 @@ function updateValue(event: Event) {
 
 <template>
   <div :class="[styles.container]">
-    <select
-        :class="[styles.dropdown]"
-        :value="modelValue"
-        @change="updateValue"
-    >
-      <option
-          v-for="option in options"
-          :key="option"
-          :value="option"
-      >
+    <select :class="[styles.dropdown]" :value="modelValue" @change="updateValue">
+      <option v-for="option in options" :key="option" :value="option">
         {{ option }}
       </option>
     </select>

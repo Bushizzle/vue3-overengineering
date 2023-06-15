@@ -30,12 +30,6 @@ function updateValue(event: Event): void {
 
 <template>
   <div :class="[styles.container]">
-    <input
-        :type="type"
-        :class="[styles.input]"
-        :value="modelValue"
-        :disabled="disabled"
-        @input="updateValue"
-    />
+    <input :type="type" :class="[styles.input]" :value="modelValue" :disabled="disabled" @input="updateValue" />
   </div>
 </template>

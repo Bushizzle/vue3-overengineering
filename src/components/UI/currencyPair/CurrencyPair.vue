@@ -16,6 +16,7 @@ const emit = defineEmits(['update:currency', 'update:amount']);
 function updateCurrency(newCurrency: string): void {
   emit('update:currency', newCurrency);
 }
+
 function updateAmount(newAmount: string): void {
   emit('update:amount', newAmount);
 }
@@ -24,17 +25,17 @@ function updateAmount(newAmount: string): void {
 <template>
   <div :class="[styles.container]">
     <DropdownComponent
-        :class="[styles.currencySelector]"
-        :modelValue="currency"
-        :options="currencies"
-        @update:modelValue="updateCurrency"
+      :class="[styles.currencySelector]"
+      :modelValue="currency"
+      :options="currencies"
+      @update:modelValue="updateCurrency"
     />
     <InputComponent
-        :type="'number'"
-        :class="[styles.amountInput]"
-        :modelValue="amount"
-        :disabled="disabled"
-        @update:modelValue="updateAmount"
+      :type="'number'"
+      :class="[styles.amountInput]"
+      :modelValue="amount"
+      :disabled="disabled"
+      @update:modelValue="updateAmount"
     />
   </div>
 </template>

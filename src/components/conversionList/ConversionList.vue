@@ -14,10 +14,7 @@ const exchangeStore = props.exchangeService.useStore();
     <div :class="[styles.list]">
       <h2>{{ exchangeStore.from }} -> {{ exchangeStore.to }}</h2>
       <ul>
-        <li
-            v-for="unit in exchangeStore.units"
-            :key="`${exchangeStore.from}-${exchangeStore.to}-${unit}`"
-        >
+        <li v-for="unit in exchangeStore.units" :key="`${exchangeStore.from}-${exchangeStore.to}-${unit}`">
           {{ unit }} {{ exchangeStore.from }} = {{ (unit * exchangeStore.rate).toFixed(2) }} {{ exchangeStore.to }}
         </li>
       </ul>
@@ -25,10 +22,7 @@ const exchangeStore = props.exchangeService.useStore();
     <div :class="[styles.list]">
       <h2>{{ exchangeStore.to }} -> {{ exchangeStore.from }}</h2>
       <ul>
-        <li
-            v-for="unit in exchangeStore.units"
-            :key="`${exchangeStore.to}-${exchangeStore.from}-${unit}`"
-        >
+        <li v-for="unit in exchangeStore.units" :key="`${exchangeStore.to}-${exchangeStore.from}-${unit}`">
           {{ unit }} {{ exchangeStore.to }} = {{ (unit / exchangeStore.rate).toFixed(2) }} {{ exchangeStore.from }}
         </li>
       </ul>

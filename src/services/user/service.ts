@@ -7,11 +7,13 @@ import { useUserStore } from './store';
 // Maybe this service should be a singleton, encapsulated in _instance parameter
 export class UserService implements IUserService {
   store = useUserStore();
+
   constructor() {
     this.loadSettings();
   }
 
   useStore = (): Store => this.store;
+
   loadSettings(): void {
     const settings = localStorage.getItem(USER_SETTINGS_KEY);
     if (settings) {

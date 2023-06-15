@@ -20,6 +20,7 @@ export class ExchangeService<T extends { data: Record<string, number> }> impleme
   api: IApi<T>;
 
   public useStore = (): Store => this.store;
+
   public async getRate(from: string, to: string): Promise<T> {
     return await this.api.get({
       base_currency: from,

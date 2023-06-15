@@ -2,10 +2,9 @@
 import CurrencyExchange from '../currencyExchange/CurrencyExchange.vue';
 import ConversionList from '../conversionList/ConversionList.vue';
 import ControlPanel from '../controlPanel/ControlPanel.vue';
-import { ExchangeService, UserService} from '../../services';
+import { ExchangeService, UserService } from '../../services';
 import { FCS, FCSResponse } from '../../dataProviders';
 // import style from "./Layout.module.scss";
-
 
 // services initialization
 // in the future some framework may be responsible for services initialization and their composition
@@ -17,5 +16,5 @@ const userStore = userService.useStore();
 <template>
   <ControlPanel :userService="userService" />
   <CurrencyExchange :exchangeService="fcaExchangeService" :userService="userService" />
-  <ConversionList :exchangeService="fcaExchangeService" v-show="userStore.list_visible"  />
+  <ConversionList :exchangeService="fcaExchangeService" v-show="userStore.list_visible" />
 </template>

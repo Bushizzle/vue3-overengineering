@@ -2,8 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: false,
-    browser: true,
-    es2021: true
+    browser: true
   },
   parser: "vue-eslint-parser",
   parserOptions: {

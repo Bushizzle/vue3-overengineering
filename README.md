@@ -1,3 +1,11 @@
+**Installation**
+
+`npm install`
+
+`npm run dev`
+
+**Description**
+
 This is an experimental project that employs Vue3, Typescript, and Pinia, using a unique architecture that positions
 services as an intermediary layer between the view and the stores. The architectural flow can be summarized as follows:
 View => Service<Store> => Api => Transport<cache>.
@@ -10,12 +18,12 @@ Moreover, segregating .scss files from .vue templates deviates from Vue's Single
 enhances code readability as modules situated close to components are easier to locate. Additionally, this approach
 results in more concise and simpler component code.
 
-TL;DR:
+**TL;DR**
 1. Flow: View => Service<Store> => Api => Transport<cache>. Unusual but funny, don't judge the POC.
 2. Service layer encapsulates stores. This approach helps maintain the consistency of services.
 3. Separated .scss modules breaks the SRP, but enhances the readability and maintainability of our code.
 
-TODOS:
+**TODOS:**
 1. Fix Eslint, whose parser works incorrectly with Vue3 setup script syntax.
 2. Implement real-time cache invalidation for the transport layer
 3. Add tests
